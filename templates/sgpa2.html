@@ -1,0 +1,305 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade calculator 💡</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+    <style>
+      .subject {
+        padding: 10px;
+        border: 2px;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        box-sizing: border-box;
+        transition: 3s;
+        border-color: white;
+        box-shadow: 0 0 8px 0 white;
+      }
+      
+      .credits {
+        padding: 10px;
+        border: 2px;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        box-sizing: border-box;
+        transition: 3s;
+        border-color: white;
+        box-shadow: 0 0 8px 0 white;
+      }
+      .con {
+        width: 100%;
+        margin: 0 auto;
+        background: linear-gradient(to right, #013243,#19b5fe);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        padding: 20px;
+        background-color: white;
+        display: block;
+        color: black;
+        border: none;
+        margin: 20px auto;
+        border-radius: 12px;
+        
+      }
+      
+      .btn:hover {
+        background-color: greenyellow; /* Green */
+      }
+      body {
+    margin: 0;
+    background: linear-gradient(to right, #013243,#19b5fe);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1{
+  color: whitesmoke;
+  margin-left: 10%;
+  margin-right: 10%;
+  
+}
+
+nav{
+width: 80%;
+position: sticky;
+margin: 20px auto;
+z-index: 1;
+display: flex;
+align-items: center;
+}
+
+#heading{
+    color: whitesmoke;
+    margin-top: 0%;
+    font-size: 25px;
+  }
+
+  .head{
+    margin-top: 30px;
+    margin-left: 0px;
+    width: 400px;
+    color:whitesmoke;
+  }
+
+.logo{
+    margin-left: 0px;
+    
+    color: #fff;
+  }
+  .input1 {
+    margin-left: 15%;
+    margin-right: 50%;
+    color: white;
+    font-style: bold;
+  }
+  .logo img{
+    
+    width: 100px;
+  }
+
+
+.nav-links{
+flex: 1;
+text-align: right;
+}
+    
+.nav-links ul li{
+font-size: 20px;
+list-style: none;
+display: inline-block;
+margin: 0px 20px;
+}
+.nav-links ul li a{
+color: #fff;
+text-decoration: none;
+}
+
+.para{
+    font-style: bold;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px 16px;
+    color: white;
+}
+.steps{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px 16px;
+    color: white;
+    font-style: bold;
+}
+
+.inputs{
+    margin-left: 13%;
+    margin-right: 50%;
+    color: white;
+    font-style: bold;
+}
+    </style>
+  </head>
+  <body id="invoice">
+    <!-- <nav>
+      <div class="logo">
+        <img src="{% static 'images/icon3.png' %}" alt="">
+        <h1 id="heading" class="head"><b>VTU SGPA / CGPA Calculator</b></h1>
+      </div>
+      <div class="nav-links">
+        <ul>
+          <li><a href="home"><b>Home</b></a></li>
+          <li><a href="contact"><b>Contact</b></a></li>
+          <li><a href="logout"><b>Logout</b></a></li>
+          
+        </ul>
+      </div>
+    </nav> -->
+    <nav style="width: 100%; margin-top: 0%; height: 5rem; background: blue" class="navbar navbar-expand-lg  navbar-light bg-light">
+      <div class="container-fluid">
+       <!-- <a class="navbar-brand" href="#">VTU SGPA/CGPA Calculator</a> -->
+       <div style="font-size: 20px" class="logo"><img class="container-fluid" src="{% static 'images/icon3.png' %}" alt=""></div>
+        <button  class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="font-size: 20px" style="background-color: white;" class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="sgpa">Calculate SGPA</a></li>
+                <li><a class="dropdown-item" href="cgpa">Calculate CGPA</a></li> 
+              </ul>
+              <li><a class="dropdown-item" href="logout">Logout</a></li>
+            </li>  
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+    
+    <h1>How to Calculate SGPA???</h1>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <div class="steps">
+      <h2>Here are few steps to Calculate SGPA </h2>
+      
+          <h3>Calculating SGPA is a fairly easy process. Here is how to calculate SGPA:</h3>
+      
+     <ul>
+         <li>Write down all your credit points for each subject</li>
+         <li>Next, multiply the credit point of each subject with the grade that you achieved in that subject. Each grade covers a range, so you can take the median.</li>
+         <li>Add all the scores that come</li> 
+          <li>Divide the total score that you got with the sum of all the credit points</li>
+          <li>Number that you get is the SGPA.</li>
+     </ul><br>
+     <!-- <div style="font-size: 30px; margin-top: 100px; color: white; " ><h1 style="color: white; font-family:Georgia, 'Times New Roman', Times, serif">Here is your CGPA {{username}}</h1></div> -->
+
+     <h3>Insert all Subject marks below to calculate SGPA</h3>
+  </div>
+    <div class="con">
+      <h1>SGPA Calculator</h1>
+      <div>
+        <input class="subject" placeholder="sub1" />
+        <input class="credits" placeholder="credits1" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub2" />
+        <input class="credits" placeholder="credits2" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub3" />
+        <input class="credits" placeholder="credits3" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub4" />
+        <input class="credits" placeholder="credits4" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub5" />
+        <input class="credits" placeholder="credits5" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub6" />
+        <input class="credits" placeholder="credits6" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub7" />
+        <input class="credits" placeholder="credits7" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub8" />
+        <input class="credits" placeholder="credits8" />
+      </div>
+    </div>
+    <button onclick="getResult()" class="btn">Calculate</button>
+    <div>
+      <button id="download"> Download PDF</button>
+    </div>
+    <div style="font-size: 30px; margin-top: 100px; color: white; " ><h1 style="color: white; font-family:Georgia, 'Times New Roman', Times, serif">Here are your {{username}}</h1></div>
+  </body>
+
+  <script>
+    window.onload=function(){
+      document.getElementById("download").addEventListener("click",()=>{
+        const invoice=this.document.getElementById("invoice");
+        console.log(invoice);
+        console.log(window);
+        var opt={
+          margin: 0,
+          filename:'myfile.pdf',
+          image: {type: 'jpeg', quality: 0.98},
+          htmlZcanvas: { scale: 2},
+          jsPDF: { unit: 'in',format: 'letter', orientation: 'portrait'}
+        };
+        html2pdf().from(invoice).set(opt).save();
+      })
+    }
+  </script>
+  <script>
+    let marks = [];
+    let credits = [];
+    function getResult() {
+      // getting the html codes
+      let all_marks = Array.from(document.querySelectorAll(".subject"));
+      // getting the values from html input boxes
+      all_marks.forEach((node) => {
+        marks.push(node.value);
+      });
+
+      let all_credits = Array.from(document.querySelectorAll(".credits"));
+      // getting the values from html input boxes
+      all_credits.forEach((node) => {
+        credits.push(node.value);
+      });
+
+      let sum = 0;
+      let total_credits = 0;
+      // marks[0]*credits[0] + marks[1]*credits[1]...
+      for (let i = 0; i < 8; i++) {
+        sum = sum + marks[i] * credits[i];
+        total_credits += parseInt(credits[i]);
+      }
+      const h1 = document.createElement("h1");
+      h1.innerText = sum / total_credits;
+      h1.style.textAlign = "center";
+      document.body.append(h1);
+    }
+  </script>
+</html>

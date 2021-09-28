@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+
+</head>
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(to right, #013243,#19b5fe);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1{
+  color: whitesmoke;
+  margin-left: 10%;
+  margin-right: 10%;
+  
+}
+
+nav{
+width: 80%;
+position: sticky;
+margin: 20px auto;
+z-index: 1;
+display: flex;
+align-items: center;
+}
+
+#heading{
+    color: whitesmoke;
+    margin-top: 0%;
+    font-size: 25px;
+  }
+
+  .head{
+    margin-top: 30px;
+    margin-left: 0px;
+    width: 400px;
+    color:whitesmoke;
+  }
+
+.logo{
+    margin-left: 0px;
+    flex-basis: 20%;
+    color: #fff;
+  }
+  .input1 {
+    margin-left: 15%;
+    margin-right: 50%;
+    color: white;
+    font-style: bold;
+  }
+  .logo img{
+    
+    width: 70px;
+  }
+
+
+.nav-links{
+flex: 1;
+text-align: right;
+}
+    
+.nav-links ul li{
+font-size: 20px;
+list-style: none;
+display: inline-block;
+margin: 0px 20px;
+}
+.nav-links ul li a{
+color: #fff;
+text-decoration: none;
+}
+
+.para{
+    font-style: bold;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px 16px;
+    color: white;
+}
+.steps{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px 16px;
+    color: white;
+    font-style: bold;
+}
+
+.inputs{
+    margin-left: 13%;
+    margin-right: 50%;
+    color: white;
+    font-style: bold;
+}
+
+
+.details{
+    margin-left: 10%;
+    margin-right: 50%;
+    color: white;
+    font-style: bold;
+
+}
+
+.inputs {
+    color: whitesmoke;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .button:hover{
+      opacity: 0.7;
+  }
+  .result {
+    text-align: right;
+  }
+
+</style>
+
+<body>
+
+    <nav>
+        <div class="logo">
+          <img src="icon3.png" alt="">
+          <h1 id="heading" class="head"><b>VTU SGPA / CGPA Calculator</b></h1>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="home"><b>Home</b></a></li>
+            <li><a href="#"><b>Services</b></a></li>
+            <li><a href="contact.html"><b>Contact</b></a></li>
+            
+          </ul>
+        </div>
+      </nav>
+
+    <h1>How to Calculate SGPA???</h1>
+</div>
+<div class="steps">
+    <h2>Here are few steps to Calculate SGPA </h2>
+    
+        <h3>Calculating SGPA is a fairly easy process. Here is how to calculate SGPA:</h3>
+    
+   <ul>
+       <li>Write down all your credit points for each subject</li>
+       <li>Next, multiply the credit point of each subject with the grade that you achieved in that subject. Each grade covers a range, so you can take the median.</li>
+       <li>Add all the scores that come</li> 
+        <li>Divide the total score that you got with the sum of all the credit points</li>
+        <li>Number that you get is the SGPA.</li>
+   </ul><br>
+
+   <h3>Insert all Subject marks below to calculate SGPA</h3>
+</div>
+<div id="invoice">
+<div class="inputs">
+    <form action="">
+    <label for="text" name="Subject 1">Subject 1 :</label>
+    <input type="number" id="sub1"><br><br>
+
+    <label for="text" name="Subject 2">Subject 2 :</label>
+    <input type="number" id="sub2"><br><br>
+
+    <label for="text" name="Subject 3">Subject 3 :</label>
+    <input type="number" id="sub3"><br><br>
+
+    <label for="text" name="Subject 4">Subject 4 :</label>
+    <input type="number" id="sub4"><br><br>
+
+    <label for="text" name="Subject 5">Subject 5 :</label>
+    <input type="number" id="sub5"><br><br>
+
+    <label for="Number" name="Subject 6">Subject 6 :</label>
+    <input type="number" id="sub6"><br><br>
+
+    <input type="submit" class="button" onclick="handleSubmit()" ><br><br>
+    </form>
+    
+</div>
+<div>
+  <button id="download"> Download PDF</button>
+</div>
+<div style="transition-delay: 5s;" class="input1">
+  <label for="number" name="result" id="res">Total SGPA</label>
+  <p id="answer" style="margin-left: 10px; color: red; font-size: 20px;">Hello There</p>
+  <input type="number" id="answer">
+</div>
+</div>
+
+<script>
+  window.onload=function(){
+    document.getElementById("download").addEventListener("click",()=>{
+      const invoice=this.document.getElementById("invoice");
+      console.log(invoice);
+      console.log(window);
+      var opt={
+        margin: 1,
+        filename:'myfile.pdf',
+        image: {type: 'jpeg', quality: 0.98},
+        htmlZcanvas: { scale: 2},
+        jsPDF: { unit: 'in',format: 'letter', orientation: 'portrait'}
+      };
+      html2pdf().from(invoice).set(opt).save();
+    })
+  }
+</script>
+
+<script>
+  function handleSubmit() {
+    const sub1 = document.getElementById('sub1').value
+    const sub2 = document.getElementById('sub2').value
+    const sub3 = document.getElementById('sub3').value
+    const sub4 = document.getElementById('sub4').value
+    const sub5 = document.getElementById('sub5').value
+    const sub6 = document.getElementById('sub6').value
+   
+
+    const total = +sub1 + +sub2 + +sub3 + +sub4 + +sub5 + +sub6
+    const cgpa = total / 60
+    console.log(cgpa, total)
+    document.getElementById('answer').value = cgpa
+    document.getElementById('answer').innerHTML=cgpa
+  }
+</script>
+  
+   
+</body>
+</html>
